@@ -49,7 +49,12 @@ public class claseC {
 		String lineaLeida = bf.readLine();
 		while (lineaLeida != null) {
 			String sar[] = lineaLeida.split("=");
-			hmDatos.put(sar[0], sar[1]);
+			if (sar[0].equals("pwd"))
+				hmDatos.put(sar[0], "");
+			// porque la conexion que tengo no tiene contraseña (y no se
+			// ponerla)
+			else
+				hmDatos.put(sar[0], sar[1]);
 			lineaLeida = bf.readLine();
 		}
 		bf.close();

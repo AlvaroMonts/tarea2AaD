@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>fichero.txt</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/fichero.txt</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

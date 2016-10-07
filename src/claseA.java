@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class claseA {
-	private String sFichero = "C:/Users/alvaro.montes/eclipse/java-neon/eclipse/workspace/fichero.txt";
+	private String sFichero = "C:/Users/alvaro.montes/eclipse/java-neon/eclipse/workspace/Tarea1AaD/fichero.txt";
 	private File archivo = new File(sFichero);
 	private FileReader fr;
 	private BufferedReader br;

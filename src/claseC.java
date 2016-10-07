@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -6,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 
 public class claseC {
@@ -23,16 +25,13 @@ public class claseC {
 	private FileWriter fw;
 
 	public claseC() {
-		sFichero = "C:/Users/alvaro.montes/eclipse/java-neon/eclipse/workspace/fichero.txt";
+		sFichero = "C:/Users/alvaro.montes/eclipse/java-neon/eclipse/workspace/Tarea1AaD/fichero.txt";
 		sc = new Scanner(System.in);
 		try {
-			bd = "bddtarea2";
-			login = "root";
-			pwd = "";
-			url = "jdbc:mysql://localhost/" + bd;
+			HashMap<String, String> hmret = loadFichero("bbdd.ini");
 			Class.forName("com.mysql.jdbc.Driver");
-			conection = DriverManager.getConnection(url, login, pwd);
-			System.out.println("Conectado a " + bd);
+			conection = DriverManager.getConnection(hmret.get("url"), hmret.get("login"), hmret.get("pwd"));
+			System.out.println("Conectado a bbdd");
 		} catch (ClassNotFoundException e) {
 			System.out.println("Driver no cargado");
 		} catch (SQLException e) {
@@ -41,6 +40,21 @@ public class claseC {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public HashMap<String, String> loadFichero(String nomFichero) throws IOException {
+		HashMap<String, String> hmDatos = new HashMap<String, String>();
+		FileReader fr = new FileReader(nomFichero);
+		BufferedReader bf = new BufferedReader(fr);
+		String lineaLeida = bf.readLine();
+		while (lineaLeida != null) {
+			String sar[] = lineaLeida.split("=");
+			hmDatos.put(sar[0], sar[1]);
+			lineaLeida = bf.readLine();
+		}
+		bf.close();
+		fr.close();
+		return hmDatos;
 	}
 
 	public void insertTec() {
